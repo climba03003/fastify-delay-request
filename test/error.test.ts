@@ -1,7 +1,10 @@
 import Fastify from 'fastify'
 import t from 'tap'
-import { setTimeout } from 'timers/promises'
 import FastifyDelayRequest from '../lib'
+
+async function sleep (ms: number): Promise<void> {
+  await new Promise((resolve) => setTimeout(resolve, ms))
+}
 
 t.test('max-timeout', async function (t) {
   t.plan(1)
@@ -17,7 +20,7 @@ t.test('max-timeout', async function (t) {
   t.teardown(fastify.close.bind(fastify))
 
   fastify.delay.addTask(async () => {
-    await setTimeout(1000)
+    await sleep(1000)
     throw Error()
   })
 

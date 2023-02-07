@@ -1,7 +1,10 @@
 import Fastify from 'fastify'
 import t from 'tap'
-import { setTimeout } from 'timers/promises'
 import FastifyDelayRequest from '../lib'
+
+async function sleep (ms: number): Promise<void> {
+  await new Promise((resolve) => setTimeout(resolve, ms))
+}
 
 t.test('max-request', async function (t) {
   t.plan(2)
@@ -13,7 +16,7 @@ t.test('max-request', async function (t) {
   t.teardown(fastify.close.bind(fastify))
 
   fastify.delay.addTask(async () => {
-    await setTimeout(5000)
+    await sleep(5000)
   })
 
   await fastify.ready()
@@ -53,7 +56,7 @@ t.test('max-request custom handler', async function (t) {
   t.teardown(fastify.close.bind(fastify))
 
   fastify.delay.addTask(async () => {
-    await setTimeout(5000)
+    await sleep(5000)
   })
 
   await fastify.ready()
@@ -93,7 +96,7 @@ t.test('max-request async custom handler', async function (t) {
   t.teardown(fastify.close.bind(fastify))
 
   fastify.delay.addTask(async () => {
-    await setTimeout(5000)
+    await sleep(5000)
   })
 
   await fastify.ready()
@@ -126,7 +129,7 @@ t.test('max-request throw inside async custom handler', async function (t) {
   t.teardown(fastify.close.bind(fastify))
 
   fastify.delay.addTask(async () => {
-    await setTimeout(5000)
+    await sleep(5000)
   })
 
   await fastify.ready()
