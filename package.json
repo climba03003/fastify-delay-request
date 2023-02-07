@@ -1,0 +1,60 @@
+{
+  "name": "fastify-delay-request",
+  "version": "0.0.0",
+  "description": "",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/mjs/index.js",
+      "require": "./lib/index.js"
+    }
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "clean": "npx rimraf \"lib/**/*.js\" \"lib/**/*.map\" \"lib/**/*.d.ts\" \"test/**/*.js\" \"test/**/*.map\" \"test/**/*.d.ts\"",
+    "lint": "eslint --ext .ts lib test",
+    "lint:fix": "npm run lint -- --fix",
+    "prebuild": "npm run clean",
+    "build": "npm run build:mjs && npm run build:cjs",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:mjs": "tsc -p tsconfig.mjs.json && tsc-alias -p tsconfig.mjs.json",
+    "unit": "tap",
+    "test": "npm run lint && npm run unit",
+    "coverage": "tap --coverage-report=html",
+    "prepublishOnly": "npm run build",
+    "postpublish": "npm run clean"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/climba03003/fastify-delay-request"
+  },
+  "author": "KaKa",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "fastify-plugin": "^4.0.0",
+    "p-queue": "^7.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/tap": "^15.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.30.6",
+    "@typescript-eslint/parser": "5.45.1",
+    "eslint": "^8.19.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.4",
+    "eslint-plugin-promise": "^6.0.0",
+    "fastify": "^4.0.0",
+    "tap": "^16.0.0",
+    "ts-node": "^10.4.0",
+    "tsc-alias": "^1.8.1",
+    "typescript": "~4.7.0"
+  }
+}

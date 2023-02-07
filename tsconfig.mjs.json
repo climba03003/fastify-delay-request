@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "removeComments": true,
+    "module": "ESNext",
+    "outDir": "lib/mjs"
+  },
+  "include": ["lib/**/*"],
+  "tsc-alias": {
+    "resolveFullPaths": true
+  }
+}

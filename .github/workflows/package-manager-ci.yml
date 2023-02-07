@@ -1,0 +1,14 @@
+name: Package Manager CI
+
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  pnpm:
+    uses: climba03003/workflows/.github/workflows/ci-pnpm.yml@v1
+  
+  yarn:
+    uses: climba03003/workflows/.github/workflows/ci-yarn.yml@v1
