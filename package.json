@@ -1,6 +1,6 @@
 {
   "name": "fastify-delay-request",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -23,7 +23,7 @@
     "build:mjs": "tsc -p tsconfig.mjs.json && tsc-alias -p tsconfig.mjs.json",
     "unit": "tap",
     "test": "npm run lint && npm run unit",
-    "coverage": "tap --coverage-report=html",
+    "coverage": "tap --coverage-report=lcovonly",
     "prepublishOnly": "npm run build",
     "postpublish": "npm run clean"
   },
